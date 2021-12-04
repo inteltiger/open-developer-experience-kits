@@ -17,7 +17,7 @@ esp:
   # URL of the ESP's repository.
   url: https://github.com/intel/Edge-Software-Provisioner
   # Branch to be checked out.
-  branch: v2.0
+  branch: master
   # ESP destination path.
   # This will be a path where ESP will be cloned to (relative to the script working directory).
   dest_dir: './esp'
