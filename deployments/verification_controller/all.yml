@@ -34,16 +34,16 @@ e810_driver_enable: false
 sgx_enabled: false
 
 # Enable isecl controller instalation
-platform_attestation_controller: true
+platform_attestation_controller: false
 
 # Disable installing isecl attestation components for nodes
-platform_attestation_node: false
+platform_attestation_node: true
 
 # List of possible host names for TA. Coma separated list with possible wildcards: *.example.com,192.168.1.*
 isecl_ta_san_list: ""
 
 # Enable PCCS deployment
-pccs_enable: true
+pccs_enable: false
 
 # Disable CPU reservation for kubelet
 cpu: {}

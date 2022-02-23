@@ -7,14 +7,15 @@ all:
     cluster_name: dek_test        # NOTE: Use `_` instead of spaces.
     deployment: dek               # NOTE: Available deployment type: Developer expirience kits (dek).
     single_node_deployment: true  # Request single node deployment (true/false).
-    limit:                        # Limit ansible deployment to certain inventory group or hosts
+    limit:                 # Limit ansible deployment to certain inventory group or hosts
+    ansible_sudo_pass: intel,123
 controller_group:
   hosts:
     controller:
-      ansible_host: 172.16.0.1
-      ansible_user: smartedge-open
+      ansible_host: 10.240.224.215
+      ansible_user: seeopen
 edgenode_group:
   hosts:
     node01:
-      ansible_host: 172.16.0.1
-      ansible_user: smartedge-open
+      ansible_host: 10.240.224.215
+      ansible_user: seeopen

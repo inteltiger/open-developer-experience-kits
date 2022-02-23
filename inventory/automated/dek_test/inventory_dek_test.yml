@@ -1,0 +1,17 @@
+all:
+  vars:
+    ansible_sudo_pass: intel,123
+    cluster_name: dek_test
+    deployment: dek
+    limit: null
+    single_node_deployment: true
+controller_group:
+  hosts:
+    controller:
+      ansible_host: 10.240.224.215
+      ansible_user: seeopen
+edgenode_group:
+  hosts:
+    node01:
+      ansible_host: 10.240.224.215
+      ansible_user: seeopen
