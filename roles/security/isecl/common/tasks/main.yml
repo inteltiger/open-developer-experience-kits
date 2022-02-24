@@ -52,6 +52,31 @@
     path: "{{ isecl_build_dir }}/k8s-extensions/isecl-k8s-scheduler/Makefile"
     state: absent
     regexp: "env GOSUMDB=off GOPROXY=direct go mod download"
+## Temporary fix - to be removed in isecl v4.1.1
+- name: Remove yum usage from isecl-k8s-controller
+  lineinfile:
+    path: "{{ isecl_build_dir }}/k8s-extensions/isecl-k8s-controller/dist/docker/Dockerfile"
+    state: absent
+    line: "RUN yum -y install curl"
+
+- name: Change trust agent base image to ubuntu:focal
+  replace:
+    path: "{{ isecl_build_dir }}/trust-agent/dist/docker/Dockerfile"
+    replace: "FROM ubuntu:focal"
+    regexp: "FROM centos:8"
+
+- name: Change package manager for trust-agent
+  replace:
+    path: "{{ isecl_build_dir }}/trust-agent/dist/docker/Dockerfile"
+    replace: 'RUN apt-get update && apt-get install -y tpm2-tools && \\'
+    regexp: 'RUN yum install -y tpm2-tss && \\'
+
+- name: Remove apt cache
+  replace:
+    path: "{{ isecl_build_dir }}/trust-agent/dist/docker/Dockerfile"
+    replace: 'rm -rf /var/cache /var/log/apt* && \\'
+    regexp: 'rm -rf /var/cache /var/log/dnf\* /var/log/yum\.\* && \\'
+##
 
 - name: Build Isecl components
   make: 
